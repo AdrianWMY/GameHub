@@ -1,5 +1,7 @@
 import { ReactNode } from 'react';
 import Topbar from './components/ui/Topbar';
+import Footer from './components/ui/Footer';
+import Overlay from './components/Overlay';
 
 interface LayoutProps {
   children: ReactNode;
@@ -10,6 +12,8 @@ const Layout = ({ children }: LayoutProps) => {
     <>
       <Topbar />
       {children}
+      <Footer />
+      <Overlay />
     </>
   );
 };

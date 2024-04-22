@@ -1,31 +1,63 @@
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import { Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+// import Container from 'react-bootstrap/Container';
+// import Nav from 'react-bootstrap/Nav';
+// import Navbar from 'react-bootstrap/Navbar';
+// import { Button } from 'react-bootstrap';
 
 const Topbar = () => {
   return (
     <>
-      <Navbar expand="lg" bg="dark" data-bs-theme="dark">
-        <Container>
-          <Navbar.Brand href="#home">GameHub</Navbar.Brand>
-          <Nav className="me-auto">
-            <Nav.Link as={Link} to="/">
-              Home
-            </Nav.Link>
-            <Nav.Link href="#features">Features</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
-            <Nav.Link as={Link} to="/about">
-              About
-            </Nav.Link>
-          </Nav>
-          <Button variant="outline-light" className="me-2">
-            Login
-          </Button>
-          <Button variant="warning"> Sign Up</Button>
-        </Container>
-      </Navbar>
+      <header className="p-3 " style={{ backgroundColor: '#2F2F2F' }}>
+        <div className="container">
+          <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a
+              href="/"
+              className="d-flex align-items-center mb-2 mb-lg-0 me-3 text-white text-decoration-none"
+            >
+              <span className="fw-bold">GameHub</span>
+            </a>
+
+            <ul className="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+              <li>
+                <a href="/" className="nav-link px-2 text-secondary">
+                  Home
+                </a>
+              </li>
+
+              <li>
+                <a href="#" className="nav-link px-2 text-white">
+                  Pricing
+                </a>
+              </li>
+              <li>
+                <a href="/about" className="nav-link px-2 text-white">
+                  About
+                </a>
+              </li>
+            </ul>
+
+            <form
+              className="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3"
+              role="search"
+            >
+              <input
+                type="search"
+                className="form-control form-control-dark text-bg-dark"
+                placeholder="Search..."
+                aria-label="Search"
+              />
+            </form>
+
+            <div className="text-end">
+              <button type="button" className="btn btn-outline-light me-2">
+                Login
+              </button>
+              <button type="button" className="btn btn-warning">
+                Sign-up
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
     </>
   );
 };
