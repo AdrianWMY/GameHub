@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <div style={{ backgroundColor: '#2F2F2F' }}>
       <Container>
-        <footer className="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5 ">
+        <footer className="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 mt-5 ">
           <div className="col mb-3">
             <a
               href="/"
@@ -18,7 +18,7 @@ const Footer = () => {
 
           <div className="col mb-3"></div>
 
-          <div className="col mb-3">
+          <div className="col mb-3 text-white">
             <h5>Section</h5>
             <ul className="nav flex-column">
               <li className="nav-item mb-2">
@@ -49,7 +49,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div className="col mb-3">
+          <div className="col mb-3 text-white">
             <h5>Section</h5>
             <ul className="nav flex-column">
               <li className="nav-item mb-2">
@@ -80,7 +80,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div className="col mb-3">
+          <div className="col mb-3 text-white">
             <h5>Section</h5>
             <ul className="nav flex-column">
               <li className="nav-item mb-2">

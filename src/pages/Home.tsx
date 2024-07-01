@@ -54,6 +54,12 @@ const Home = () => {
       gameText:
         'some quick text some quick text some quick text some quick text some quick text',
     },
+    {
+      imgsrc: 'src/assets/test.jpeg',
+      title: ' game 7 ',
+      gameText:
+        'some quick text some quick text some quick text some quick text some quick text',
+    },
   ];
 
   return (
