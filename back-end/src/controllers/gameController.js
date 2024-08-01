@@ -23,9 +23,11 @@ export async function getAllGames() {
 }
 
 export async function getGameById(gameId) {
+
     try {
         const collection = await getCollection();
-        return await collection.findOne({ id: gameId });
+        const gameIdInt = parseInt(gameId, 10);
+        return await collection.findOne({ id: gameIdInt });
     } catch (error) {
         throw new Error('Error fetching game by ID: ' + error.message);
     }

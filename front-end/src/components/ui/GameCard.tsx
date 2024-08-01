@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 interface GameCardProps {
   gameName: string;
-  desc: string;
+  genres: string;
   image: string;
   id: string;
 }
@@ -15,8 +15,8 @@ const truncateText = (text: string, maxLength: number) => {
   return text.substr(0, maxLength) + '...';
 };
 
-const GameCard = ({ gameName, desc, image, id }: GameCardProps) => {
-  const truncatedDesc = truncateText(desc, 100); // Adjust the max length as needed
+const GameCard = ({ gameName, genres, image, id }: GameCardProps) => {
+  const truncatedDesc = truncateText(genres, 100); // Adjust the max length as needed
 
   return (
     <div className="sm:max-w-sm rounded overflow-hidden shadow-lg bg-zinc-800 text-white">

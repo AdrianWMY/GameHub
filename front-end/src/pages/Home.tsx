@@ -9,9 +9,9 @@ const Home = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getAllGames();
-        if (data) {
-          setGames(data);
+        const games = await getAllGames();
+        if (games) {
+          setGames(games);
         }
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -27,9 +27,9 @@ const Home = () => {
         <GameCard
           key={game.id}
           id={game.id}
-          gameName={game.gameName}
-          desc={game.about}
-          image={game.image}
+          gameName={game.name}
+          genres={game.genres.map((genre) => genre.name).join(',')}
+          image={game.background_image}
         />
       ))}
     </div>

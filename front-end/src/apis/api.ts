@@ -6,7 +6,7 @@ const API_URL = 'http://localhost:3000/api';
 export const getAllGames = async (): Promise<Game[] | undefined> => {
   try {
     const response: AxiosResponse<Game[]> = await axios.get(
-      `${API_URL}/data`
+      `${API_URL}/games`
     );
     return response.data;
   } catch (error) {

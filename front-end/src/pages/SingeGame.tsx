@@ -17,9 +17,9 @@ const SingeGame = () => {
           return;
         }
         const [id] = gameId.split('-');
-        console.log(id);
 
         const fetchedGame = await getSingleGame(id);
+
         if (fetchedGame) {
           setGame(fetchedGame); // Set fetchedGame to state
         }
@@ -45,46 +45,46 @@ const SingeGame = () => {
     <div className="container mx-auto py-5">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-white">
         <div>
-          <h1 className="text-3xl font-bold">{game.gameName}</h1>
+          <h1 className="text-3xl font-bold">{game.name}</h1>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
             <div className="p-2">
               <div className="text-gray-400  pb-2">Platforms</div>
-              <div>{game.platforms}</div>
+              <div>{game.platforms.map((p) => p.platform.name).join(',')}</div>
             </div>
 
             <div className="p-2">
               <div className="text-gray-400  pb-2">Genre</div>
-              <div>{game.genre}</div>
+              <div>{game.genres.map((genre) => genre.name).join(',')}</div>
             </div>
 
             <div className="p-2">
               <div className="text-gray-400  pb-2">Release date</div>
-              <div>{game.releaseDate}</div>
+              <div>{game.released}</div>
             </div>
 
             <div className="p-2">
               <div className="text-gray-400  pb-2">Developer</div>
-              <div>{game.developer}</div>
+              <div>{'developer_testing'}</div>
             </div>
 
             <div className="p-2">
               <div className="text-gray-400  pb-2">Publisher</div>
-              <div>{game.publisher}</div>
+              <div>{'publisher'}</div>
             </div>
 
             <div className="p-2">
               <div className="text-gray-400  pb-2">Age rating</div>
-              <div>{game.ageRating}</div>
+              <div>{'ageRating'}</div>
             </div>
           </div>
 
           <h2 className="text-xl font-bold mt-4">About</h2>
-          <p className="mt-2">{game.about}</p>
+          <p className="mt-2">{'about'}</p>
         </div>
 
         <div className="">
-          <img src={game.image} alt="" className="w-full" />
+          <img src={game.background_image} alt="" className="w-full" />
         </div>
       </div>
     </div>
