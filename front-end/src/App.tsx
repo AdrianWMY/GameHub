@@ -13,7 +13,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
-            <Route path="/games/:gameId" element={<SingeGame />} />
+            <Route path="/games/:gameName" element={<SingeGame />} />
           </Routes>
         </Layout>
       </Router>

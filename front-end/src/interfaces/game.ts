@@ -2,6 +2,7 @@
 export interface Game {
   id: string;
   name: string;
+  slug: string;
   released: string;
   background_image: string;
   platforms: {

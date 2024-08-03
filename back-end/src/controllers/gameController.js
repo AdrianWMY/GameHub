@@ -1,5 +1,6 @@
 import clientPromise from '../db/db.js';
 
+
 const DATABASE_NAME = 'game_hub';
 const COLLECTION_NAME = 'games';
 

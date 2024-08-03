@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { getSingleGame } from '../apis/api';
 import { Game } from '../interfaces/game';
-import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 const SingeGame = () => {
-  const { gameId } = useParams<{ gameId: string }>();
+  const location = useLocation();
+  const { gameId } = location.state;
 
   const [game, setGame] = useState<Game | null>(null);
   const [loading, setLoading] = useState(true);
@@ -16,9 +17,8 @@ const SingeGame = () => {
           console.error('Game ID not provided');
           return;
         }
-        const [id] = gameId.split('-');
 
-        const fetchedGame = await getSingleGame(id);
+        const fetchedGame = await getSingleGame(gameId);
 
         if (fetchedGame) {
           setGame(fetchedGame); // Set fetchedGame to state

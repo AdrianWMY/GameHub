@@ -27,6 +27,7 @@ const Home = () => {
         <GameCard
           key={game.id}
           id={game.id}
+          gameSlug={game.slug}
           gameName={game.name}
           genres={game.genres.map((genre) => genre.name).join(',')}
           image={game.background_image}
