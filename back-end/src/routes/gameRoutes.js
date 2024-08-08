@@ -1,5 +1,5 @@
 import express from 'express';
-import { getAllGames, getGameById, getGameMediaById } from '../controllers/gameController.js';
+import { getAllGames, getGameById, getGameMediaById, getStoreLinksByGameId } from '../controllers/gameController.js';
 
 const router = express.Router();
 
@@ -35,6 +35,20 @@ router.get('/games/media/:gameId', async (req, res) => {
             return res.status(404).json({ error: 'Game media not found' });
         }
         res.status(200).json(gameMedia);
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+router.get('/games/store-links/:gameId', async (req, res) => {
+    const gameId = req.params.gameId;
+    try {
+        const store_links = await getStoreLinksByGameId(gameId);
+        if (!store_links) {
+            return res.status(404).json({ error: 'Game media not found' });
+        }
+        res.status(200).json(store_links);
     } catch (error) {
         console.error(error.message);
         res.status(500).json({ error: 'Internal Server Error' });

@@ -1,8 +1,15 @@
 import { useEffect, useState } from 'react';
-import { getSingleGame, getGameScreenshots } from '../apis/api';
+import {
+  getSingleGame,
+  getGameScreenshots,
+  getStoreLinksByGameId,
+} from '../apis/api';
 import { Game } from '../interfaces/game';
-import { GameScreenshot } from '../interfaces/gameScreenshot'; // Import the Game interface
+import { GameScreenshot } from '../interfaces/gameScreenshot';
+import { GameLinks } from '../interfaces/gameLink';
+
 import { useLocation } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
 
 const SingeGame = () => {
   const location = useLocation();
@@ -13,6 +20,7 @@ const SingeGame = () => {
   };
 
   const [game, setGame] = useState<Game | null>(null);
+  const [game_links, setGameLinks] = useState<GameLinks | null>(null);
   const [game_screenshots, setGameScrrenshots] =
     useState<GameScreenshot | null>(null);
   const [loading, setLoading] = useState(true);
@@ -24,10 +32,12 @@ const SingeGame = () => {
           return;
         }
 
-        const [fetchedGame, fetchedGameScreenshots] = await Promise.all([
-          getSingleGame(gameId),
-          getGameScreenshots(gameId),
-        ]);
+        const [fetchedGame, fetchedGameScreenshots, fetchedGameLinks] =
+          await Promise.all([
+            getSingleGame(gameId),
+            getGameScreenshots(gameId),
+            getStoreLinksByGameId(gameId),
+          ]);
 
         if (fetchedGame) {
           setGame(fetchedGame); // Set fetchedGame to state
@@ -35,6 +45,9 @@ const SingeGame = () => {
 
         if (fetchedGameScreenshots) {
           setGameScrrenshots(fetchedGameScreenshots); // Set fetchedGameScreenshots to state
+        }
+        if (fetchedGameLinks) {
+          setGameLinks(fetchedGameLinks);
         }
       } catch (error) {
         console.error('Error fetching game:', error);
@@ -46,6 +59,10 @@ const SingeGame = () => {
     fetchData();
   }, [gameId]); // Add gameId as a dependency
 
+  const handlePlatformClick = (url: string) => {
+    window.open(url, '_blank');
+  };
+
   if (loading) {
     return <div className="text-white">Loading...</div>;
   }
@@ -56,11 +73,11 @@ const SingeGame = () => {
 
   return (
     <div className="container mx-auto py-5">
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-white">
-        <div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-white">
+        <div className="">
           <h1 className="text-3xl font-bold">{game.name}</h1>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+          <div className="grid grid-cols-2 sm:gap-4 gap-2 mt-4">
             <div className="p-2">
               <div className="text-gray-400  pb-2">Platforms</div>
               <div>{game.platforms.map((p) => p.platform.name).join(',')}</div>
@@ -120,6 +137,16 @@ const SingeGame = () => {
               <a href={r.image} target="_blank">
                 <img src={r.image} alt="" className="rounded-xl w-72" />
               </a>
+            ))}
+          </div>
+          <div className="grid grid-cols-3 gap-1">
+            {game_links?.allLinks?.map((link) => (
+              <Button
+                className="bg-gray-100 text-black "
+                onClick={() => handlePlatformClick(link.url)}
+              >
+                {link.store_id}
+              </Button>
             ))}
           </div>
         </div>

@@ -43,3 +43,24 @@ export async function getGameMediaById(gameId) {
     }
 }
 
+export async function getStoreLinksByGameId(gameId) {
+
+    try {
+        const collection = await getCollection("links_of_games");
+        const gameIdInt = parseInt(gameId, 10);
+
+        const allLinks = await collection.find({ game_id: gameIdInt }).toArray();
+
+        const res = {
+            allLinks
+        }
+
+        return res;
+    } catch (error) {
+        throw new Error('Error fetching game by ID: ' + error.message);
+    }
+}
+
+
+
+
