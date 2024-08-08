@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 import { Game } from '../interfaces/game'; // Import the Game interface
+import { GameScreenshot } from '../interfaces/gameScreenshot'; // Import the Game interface
 const API_URL = 'http://localhost:3000/api';
 
 
@@ -24,3 +25,14 @@ export const getSingleGame = async (gameId: string): Promise<Game | undefined> =
     console.error(`Error fetching game data for gameId ${gameId}:`, error);
   }
 }
+export const getGameScreenshots = async (gameId: string): Promise<GameScreenshot | undefined> => {
+  try {
+    const response: AxiosResponse<GameScreenshot> = await axios.get(
+      `${API_URL}/games/media/${gameId}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error(`Error fetching game data for gameId ${gameId}:`, error);
+  }
+}
+

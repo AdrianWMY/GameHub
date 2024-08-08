@@ -2,7 +2,7 @@ import React from 'react';
 
 const Overlay = () => {
   return (
-    <div className="fixed top-0 left-0 w-full h-full bg-black z-[-1]"></div>
+    <div className="fixed top-0 left-0 w-full h-full bg-neutral-900 z-[-1]"></div>
   );
 };
 

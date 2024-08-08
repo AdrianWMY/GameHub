@@ -2,8 +2,8 @@ import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
 
 interface GameCardProps {
-  gameName: string;
-  gameSlug: string;
+  game_name: string;
+  game_slug: string;
   genres: string;
   image: string;
   id: string;
@@ -16,19 +16,25 @@ const truncateText = (text: string, maxLength: number) => {
   return text.substr(0, maxLength) + '...';
 };
 
-const GameCard = ({ gameName, genres, image, id, gameSlug }: GameCardProps) => {
+const GameCard = ({
+  game_name,
+  genres,
+  image,
+  id,
+  game_slug,
+}: GameCardProps) => {
   const truncatedDesc = truncateText(genres, 100); // Adjust the max length as needed
 
   const navigate = useNavigate();
 
   const handleMoreInfoClick = () => {
-    navigate(`/games/${encodeURIComponent(gameSlug)}`, {
+    navigate(`/games/${encodeURIComponent(game_slug)}`, {
       state: { gameId: id },
     });
   };
 
   return (
-    <div className="sm:max-w-sm rounded overflow-hidden shadow-lg bg-zinc-800 text-white">
+    <div className="sm:max-w-sm rounded-2xl overflow-hidden shadow-lg bg-zinc-800 text-white">
       <div className="relative h-40">
         <img
           className="absolute h-full w-full object-cover"
@@ -38,7 +44,7 @@ const GameCard = ({ gameName, genres, image, id, gameSlug }: GameCardProps) => {
       </div>
 
       <div className="px-6 py-4">
-        <div className="font-bold text-xl mb-2">{gameName}</div>
+        <div className="font-bold text-xl mb-2">{game_name}</div>
         <p className="text-gray-400 text-base">{truncatedDesc}</p>
       </div>
       <div className="px-6 pt-4 pb-2">

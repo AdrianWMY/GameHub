@@ -11,12 +11,11 @@ export interface Game {
    }[];
   genres: Genre[];
   rating: number;
-  // releaseDate: string;
-  // developer: string;
-  // publisher: string;
-  // ageRating: string;
-  // about: string;
-  // image: string; 
+  description_raw: string;
+  developers: { name: string }[];
+  publishers: { name: string }[];
+  
+ 
 }
 
 interface Platform{
@@ -28,3 +27,4 @@ interface Genre{
   name: string;
   slug:string
 }
+
