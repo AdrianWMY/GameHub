@@ -68,5 +68,14 @@ router.get('/stores/:storeId', async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+router.get('/testing', (req, res) => {
+    try {
+
+        res.status(200).json("testing testing testing testing");
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
 
 export default router;
