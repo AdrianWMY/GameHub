@@ -62,5 +62,18 @@ export async function getStoreLinksByGameId(gameId) {
 }
 
 
+export async function getStoreById(storeId) {
+
+    try {
+        const collection = await getCollection("game_stores");
+        const storeIdInt = parseInt(storeId, 10);
+        return await collection.findOne({ id: storeIdInt });
+    } catch (error) {
+        throw new Error('Error fetching game by ID: ' + error.message);
+    }
+}
+
+
+
 
 

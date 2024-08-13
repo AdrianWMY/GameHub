@@ -3,10 +3,11 @@ import {
   getSingleGame,
   getGameScreenshots,
   getStoreLinksByGameId,
+  getStoreById,
 } from '../apis/api';
 import { Game } from '../interfaces/game';
 import { GameScreenshot } from '../interfaces/gameScreenshot';
-import { GameLinks } from '../interfaces/gameLink';
+// import { GameLinks } from '../interfaces/gameLink';
 
 import { useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -20,9 +21,10 @@ const SingeGame = () => {
   };
 
   const [game, setGame] = useState<Game | null>(null);
-  const [game_links, setGameLinks] = useState<GameLinks | null>(null);
+  // const [game_links, setGameLinks] = useState<GameLinks | null>(null);
   const [game_screenshots, setGameScrrenshots] =
     useState<GameScreenshot | null>(null);
+  const [storeNames, setStoreNames] = useState<{ [name: string]: string }>({});
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     const fetchData = async () => {
@@ -47,7 +49,21 @@ const SingeGame = () => {
           setGameScrrenshots(fetchedGameScreenshots); // Set fetchedGameScreenshots to state
         }
         if (fetchedGameLinks) {
-          setGameLinks(fetchedGameLinks);
+          // setGameLinks(fetchedGameLinks);
+          const fetchStoreNames = async () => {
+            for (const link of fetchedGameLinks.allLinks) {
+              const store = await getStoreById(link.store_id.toString());
+
+              if (store?.name) {
+                setStoreNames((prevData) => ({
+                  ...prevData,
+                  [store.name]: link.url, // Use computed property name to dynamically set the key
+                }));
+              }
+            }
+          };
+
+          fetchStoreNames();
         }
       } catch (error) {
         console.error('Error fetching game:', error);
@@ -139,13 +155,18 @@ const SingeGame = () => {
               </a>
             ))}
           </div>
+          <div className="text-xl text-gray-400 font-bold py-2">
+            Where to buy
+          </div>
+
           <div className="grid grid-cols-3 gap-1">
-            {game_links?.allLinks?.map((link) => (
+            {Object.entries(storeNames).map(([name, url]) => (
               <Button
-                className="bg-gray-100 text-black "
-                onClick={() => handlePlatformClick(link.url)}
+                key={name} // Adding a unique key for each item
+                className="bg-gray-100 text-black hover:bg-zinc-400 hover:text-white"
+                onClick={() => handlePlatformClick(url)}
               >
-                {link.store_id}
+                {name}
               </Button>
             ))}
           </div>
