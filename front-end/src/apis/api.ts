@@ -3,7 +3,13 @@ import { Game } from '../interfaces/game'; // Import the Game interface
 import { GameScreenshot } from '../interfaces/gameScreenshot'; 
 import { GameLinks } from '../interfaces/gameLink'; 
 import { Store } from '../interfaces/store'; 
-const API_URL = 'http://localhost:3000/api';
+
+const API_URL: string = import.meta.env.VITE_API_URL || "https://default-api-url.com";
+
+
+console.log("API_URLAPI_URLAPI_URLAPI_URL")
+console.log(API_URL)
+console.log("API_URLAPI_URLAPI_URLAPI_URL")
 
 
 export const getAllGames = async (): Promise<Game[] | undefined> => {
