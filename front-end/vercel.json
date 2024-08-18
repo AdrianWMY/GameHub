@@ -1,0 +1,8 @@
+{
+  "git": {
+    "deploymentEnabled": {
+      "adrian-dev": false,
+      "jeff-dev":false
+    }
+  }
+}

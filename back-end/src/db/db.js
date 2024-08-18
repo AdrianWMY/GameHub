@@ -6,6 +6,7 @@ dotenv.config()
 
 const uri = process.env.MONGODB_URI
 if (!uri) {
+    console.error('MONGODB_URI is not defined');
     throw new Error('MONGODB_URI is not defined in .env file');
 }
 
