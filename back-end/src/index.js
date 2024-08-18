@@ -12,13 +12,6 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.use('/api', gameRoutes);
-// app.get('/api/games', (req, res) => {
-//     res.send("hello worldhello worldhello worldhello world ");
-// })
-// app.get('/api/stores', (req, res) => {
-//     res.send("************************************************** ");
-// })
-
 
 if (process.env.ENVIRONMENT !== 'lambda') {
     port = process.env.PORT || 3000;

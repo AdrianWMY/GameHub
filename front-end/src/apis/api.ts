@@ -7,10 +7,6 @@ import { Store } from '../interfaces/store';
 const API_URL: string = import.meta.env.VITE_API_URL || "https://default-api-url.com";
 
 
-console.log("API_URLAPI_URLAPI_URLAPI_URL")
-console.log(API_URL)
-console.log("API_URLAPI_URLAPI_URLAPI_URL")
-
 
 export const getAllGames = async (): Promise<Game[] | undefined> => {
   try {
