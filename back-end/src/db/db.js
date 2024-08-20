@@ -10,7 +10,7 @@ if (!uri) {
     throw new Error('MONGODB_URI is not defined in .env file');
 }
 
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+const client = new MongoClient(uri);
 
 let cachedClient = null;
 

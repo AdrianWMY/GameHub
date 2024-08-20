@@ -3,16 +3,35 @@ import clientPromise from '../db/db.js';
 
 const DATABASE_NAME = 'game_hub';
 
+let cachedDb = null;
+let cachedCollections = {};
+
 async function getDatabase() {
+
+    if (cachedDb) {
+        return cachedDb;
+    }
     const client = await clientPromise();
-    return client.db(DATABASE_NAME);
+    cachedDb = client.db(DATABASE_NAME);
+    return cachedDb;
 }
+
 
 async function getCollection(collectionName) {
-    const db = await getDatabase();
-    return db.collection(collectionName);
-}
+    // Check if the collection is already cached
+    if (cachedCollections[collectionName]) {
+        return cachedCollections[collectionName];
+    }
 
+    // Get the database and retrieve the collection
+    const db = await getDatabase();
+    const collection = db.collection(collectionName);
+
+    // Cache the collection for future use
+    cachedCollections[collectionName] = collection;
+
+    return collection;
+}
 export async function getAllGames() {
     try {
         const collection = await getCollection("games");
