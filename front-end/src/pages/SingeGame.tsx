@@ -14,7 +14,8 @@ import { Button } from '@/components/ui/button';
 
 const SingeGame = () => {
   const location = useLocation();
-  const { gameId } = location.state;
+  const queryParams = new URLSearchParams(location.search);
+  const gameId = queryParams.get('id');
   const [isExpanded, setIsexpanded] = useState(false);
   const toggleReadMore = () => {
     setIsexpanded(!isExpanded);

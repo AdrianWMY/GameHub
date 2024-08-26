@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 interface GameCardProps {
   game_name: string;
@@ -25,13 +25,13 @@ const GameCard = ({
 }: GameCardProps) => {
   const truncatedDesc = truncateText(genres, 100); // Adjust the max length as needed
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const handleMoreInfoClick = () => {
-    navigate(`/games/${encodeURIComponent(game_slug)}`, {
-      state: { gameId: id },
-    });
-  };
+  // const handleMoreInfoClick = () => {
+  //   navigate(`/games/${encodeURIComponent(game_slug)}`, {
+  //     state: { gameId: id },
+  //   });
+  // };
 
   return (
     <div className="sm:max-w-sm rounded-2xl overflow-hidden shadow-lg bg-zinc-800 text-white">
@@ -48,9 +48,9 @@ const GameCard = ({
         <p className="text-gray-400 text-base">{truncatedDesc}</p>
       </div>
       <div className="px-6 pt-4 pb-2">
-        <Button className="hover:bg-zinc-500" onClick={handleMoreInfoClick}>
-          More Info
-        </Button>
+        <Link to={`/games/${encodeURIComponent(game_slug)}?id=${id}`}>
+          <Button className="hover:bg-zinc-500">More Info</Button>
+        </Link>
       </div>
     </div>
   );
