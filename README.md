@@ -46,5 +46,3 @@ npm start
 ```
 5. The website should now be running
 
-## Task Management
-We used Trello to manage our tasks. You can view our Trello board [here](https://trello.com/b/pKcepVAH/gamehub)
